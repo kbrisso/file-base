@@ -14,8 +14,12 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import Drive from 'node-disk-info/dist/classes/drive';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+
+
+const nodeDiskInfo = require('node-disk-info');
 
 export default class AppUpdater {
   constructor() {
@@ -27,6 +31,22 @@ export default class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
+function getDriveList(): Promise<Drive> {
+  return new nodeDiskInfo.getDiskInfo()
+    .then()
+    .catch((reason: any) => console.log(reason));
+}
+
+ipcMain.on('get-drives', async (event, arg) => {
+  console.error(arg);
+  let disks: any;
+  try {
+    disks = await getDriveList();
+    event.reply('get-drives', disks);
+  } catch (e) {
+    console.error(e);
+  }
+});
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));

@@ -19,5 +19,15 @@ contextBridge.exposeInMainWorld('electron', {
         ipcRenderer.once(channel, (event, ...args) => func(...args));
       }
     },
+    async getDrivesOnce(channel, func) {
+      const validChannels = ['get-drives'];
+      if (validChannels.includes(channel)) {
+        // Deliberately strip event as it includes `sender`
+        ipcRenderer.once(channel, (event, ...args) => func(...args));
+      }
+    },
+    getDrives() {
+      ipcRenderer.send('get-drives', 'get-drives');
+    },
   },
 });
