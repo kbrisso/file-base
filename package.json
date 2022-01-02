@@ -95,7 +95,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
+    "url": "git+https://github.com/kbrisso/file-base.git"
   },
   "author": {
     "name": "file-base",
