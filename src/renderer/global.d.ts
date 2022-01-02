@@ -1,11 +1,18 @@
 declare let window: Window;
 export interface IElectron {
   ipcRenderer: {
-    myPing(): void;
-    once(channel: any, func: any): void;
-    getDrivesOnce(channel: any, func: any): void;
-    getDrives(): void;
-    on(channel: any, func: any): void;
+    getDrives(): any;
+  };
+  dialog: {
+    showOpenDialog(): any;
+  };
+  database: {
+    createLibrary(doc: any): any;
+    getLibraries(): any;
+    getLibraryByID(id: any): any;
+  };
+  dirtree: {
+    getDirTree(args: any): any;
   };
 }
 declare global {

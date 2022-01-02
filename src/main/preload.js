@@ -2,32 +2,29 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electron', {
   ipcRenderer: {
-    myPing() {
-      ipcRenderer.send('ipc-example', 'ping');
+    async getDrives(args) {
+      return ipcRenderer.invoke('get-drives', args);
     },
-    on(channel, func) {
-      const validChannels = ['ipc-example'];
-      if (validChannels.includes(channel)) {
-        // Deliberately strip event as it includes `sender`
-        ipcRenderer.on(channel, (event, ...args) => func(...args));
-      }
+  },
+  dialog: {
+    async showOpenDialog() {
+      return ipcRenderer.invoke('browse-files');
     },
-    once(channel, func) {
-      const validChannels = ['ipc-example'];
-      if (validChannels.includes(channel)) {
-        // Deliberately strip event as it includes `sender`
-        ipcRenderer.once(channel, (event, ...args) => func(...args));
-      }
+  },
+  dirtree: {
+    async getDirTree(args) {
+      return ipcRenderer.invoke('get-dir-tree', args);
     },
-    async getDrivesOnce(channel, func) {
-      const validChannels = ['get-drives'];
-      if (validChannels.includes(channel)) {
-        // Deliberately strip event as it includes `sender`
-        ipcRenderer.once(channel, (event, ...args) => func(...args));
-      }
+  },
+  database: {
+    async createLibrary(args) {
+      return ipcRenderer.invoke('create-library', args);
     },
-    getDrives() {
-      ipcRenderer.send('get-drives', 'get-drives');
+    async getLibraries() {
+      return ipcRenderer.invoke('get-libraries');
+    },
+    async getLibraryByID(args) {
+      return ipcRenderer.invoke('get-library-by-id', args);
     },
   },
 });

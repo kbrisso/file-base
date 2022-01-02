@@ -10,7 +10,6 @@ export default {
   externals: [...Object.keys(externals || {})],
 
   stats: 'errors-only',
-
   module: {
     rules: [
       {
@@ -37,8 +36,10 @@ export default {
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [webpackPaths.srcPath, 'node_modules'],
+    fallback: {
+      path: require.resolve('path-browserify'),
+    },
   },
-
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',

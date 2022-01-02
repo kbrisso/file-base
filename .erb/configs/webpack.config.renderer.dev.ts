@@ -1,23 +1,24 @@
-import path from 'path';
-import fs from 'fs';
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import chalk from 'chalk';
-import { merge } from 'webpack-merge';
-import { spawn, execSync } from 'child_process';
-import baseConfig from './webpack.config.base';
-import webpackPaths from './webpack.paths';
-import checkNodeEnv from '../scripts/check-node-env';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import path from "path";
+import fs from "fs";
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import chalk from "chalk";
+import { merge } from "webpack-merge";
+import { execSync, spawn } from "child_process";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import baseConfig from "./webpack.config.base";
+import webpackPaths from "./webpack.paths";
+import checkNodeEnv from "../scripts/check-node-env";
 
 // When an ESLint server is running, we can't set the NODE_ENV so we'll check if it's
 // at the dev webpack config is not accidentally run in a production environment
-if (process.env.NODE_ENV === 'production') {
-  checkNodeEnv('development');
+if (process.env.NODE_ENV === "production") {
+  checkNodeEnv("development");
 }
 
 const port = process.env.PORT || 1212;
-const manifest = path.resolve(webpackPaths.dllPath, 'renderer.json');
+const manifest = path.resolve(webpackPaths.dllPath, "renderer.json");
+// @ts-ignore
 const requiredByDLLConfig = module.parent.filename.includes(
   'webpack.config.renderer.dev.dll'
 );
@@ -84,7 +85,7 @@ export default merge(baseConfig, {
         use: ['style-loader', 'css-loader', 'sass-loader'],
         exclude: /\.module\.s?(c|a)ss$/,
       },
-      //Font Loader
+      // Font Loader
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
