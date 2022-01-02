@@ -1,7 +1,7 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "ElectronReact",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Fast Refresh for rapid application development",
+  "name": "file-base",
+  "productName": "file-base",
+  "description": "A database for your files using Electron and React",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",
@@ -30,8 +30,8 @@
     ]
   },
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.erb.ElectronReact",
+    "productName": "file-base",
+    "appId": "com.brissonswe.filebase",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
@@ -89,7 +89,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "electron-react-boilerplate",
+      "owner": "file-base",
       "repo": "electron-react-boilerplate"
     }
   },
@@ -98,15 +98,14 @@
     "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
   },
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://electron-react-boilerplate.js.org"
+    "name": "file-base",
+    "email": "kbrisso@gmail.com"
   },
   "contributors": [
     {
-      "name": "Amila Welihinda",
-      "email": "amilajack@gmail.com",
-      "url": "https://github.com/amilajack"
+      "name": "Kevin Brisson",
+      "email": "kbrisso@gmail.com",
+      "url": "https://github.com/kbrisso"
     },
     {
       "name": "John Tran",
