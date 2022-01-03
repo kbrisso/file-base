@@ -2,8 +2,10 @@
  * Base webpack config used across other specific configs
  */
 
+// @ts-ignore
 import webpack from 'webpack';
 import webpackPaths from './webpack.paths';
+// @ts-ignore
 import { dependencies as externals } from '../../release/app/package.json';
 
 export default {

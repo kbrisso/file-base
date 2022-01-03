@@ -1,13 +1,13 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "electron-react-boilerplate",
+  "name": "file-base",
+  "productName": "file-base",
   "version": "4.3.1",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "main": "./dist/main/main.js",
   "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://github.com/electron-react-boilerplate"
+    "name": "file-base",
+    "email": "kbrisso@gmail.com",
+    "url": "git+https://github.com/kbrisso/file-base.git"
   },
   "scripts": {
     "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
@@ -15,6 +15,8 @@
     "postinstall": "npm run electron-rebuild && npm run link-modules"
   },
   "dependencies": {
+    "@types/pouchdb": "^6.4.0",
+    "bootstrap-icons": "^1.7.2",
     "pouchdb": "^7.2.2"
   },
   "license": "MIT"

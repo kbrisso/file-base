@@ -2,7 +2,7 @@
   "rules": {
     "no-console": "off",
     "global-require": "off",
-    "import/no-dynamic-require": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-dynamic-require": 0,
+    "import/no-extraneous-dependencies": 0
   }
 }

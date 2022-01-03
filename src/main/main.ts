@@ -8,17 +8,17 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import path from "path";
-import { app, BrowserWindow, dialog, ipcMain, shell } from "electron";
-import { autoUpdater } from "electron-updater";
-import log from "electron-log";
-import Drive from "node-disk-info/dist/classes/drive";
-import PouchDB from "pouchdb";
-import { DirectoryTree } from "directory-tree";
-import MenuBuilder from "./menu";
-import { resolveHtmlPath } from "./util";
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import path from 'path';
+import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
+import { autoUpdater } from 'electron-updater';
+import log from 'electron-log';
+import Drive from 'node-disk-info/dist/classes/drive';
+import PouchDB from 'pouchdb';
+import { DirectoryTree } from 'directory-tree';
+import MenuBuilder from './menu';
+import { resolveHtmlPath } from './util';
 
 const { createLogger, format, transports } = require('winston');
 
@@ -250,7 +250,7 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
-    icon: getAssetPath('icon.png'),
+    icon: getAssetPath(''),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },

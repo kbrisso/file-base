@@ -27,7 +27,6 @@
     "outDir": "release/app/dist",
     "typeRoots": [
       "./node_modules/@types/",
-      "./node_modules/electron-better-ipc/index.d.ts",
       "./src/renderer/global.d.ts",
       "./src/renderer/loglevel.d.ts"
     ]
