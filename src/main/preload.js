@@ -11,9 +11,14 @@ contextBridge.exposeInMainWorld('electron', {
       return ipcRenderer.invoke('browse-files');
     },
   },
-  dirtree: {
+  dirTree: {
     async getDirTree(args) {
       return ipcRenderer.invoke('get-dir-tree', args);
+    },
+  },
+  fileTypes: {
+    async getFileTypes() {
+      return ipcRenderer.invoke('get-file-types');
     },
   },
   database: {

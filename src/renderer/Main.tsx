@@ -1,30 +1,23 @@
-import React, { FormEvent } from 'react';
-import Container from 'react-bootstrap/Container';
-import { MemoryRouter as Router } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
-import {
-  Button,
-  Col,
-  ListGroup,
-  Nav,
-  NavItem,
-  NavLink,
-  Row,
-} from 'react-bootstrap';
+import React, { FormEvent } from "react";
+import Container from "react-bootstrap/Container";
+import { MemoryRouter as Router } from "react-router";
+import { Route, Switch } from "react-router-dom";
+import { Button, Col, ListGroup, Nav, NavItem, NavLink, Row } from "react-bootstrap";
 
-import { nanoid } from 'nanoid';
-import { PlusCircleDotted } from 'react-bootstrap-icons';
-import log from 'loglevel';
+import { nanoid } from "nanoid";
+import { PlusCircleDotted } from "react-bootstrap-icons";
+import log from "loglevel";
 
-import DriveList from './Drive';
-import Search from './Search';
-import './css/sidebars.css';
-import './css/main.css';
-import '../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
-import Libraries from './Libraries';
-import LibraryView from './LibraryView';
-import LibraryModalForm from './LibraryModalForm';
-import ErrorBoundary from './ErrorBoundary';
+import DriveList from "./Drive";
+import Search from "./Search";
+import "./css/sidebars.css";
+import "./css/main.css";
+import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+import Libraries from "./Libraries";
+import LibraryView from "./LibraryView";
+import LibraryModalForm from "./LibraryModalForm";
+import ErrorBoundary from "./ErrorBoundary";
+import SettingsView from "./SettingsView";
 
 type State = {
   showModal: boolean;
@@ -34,6 +27,7 @@ type State = {
   currentDocId: string;
   showLibraryView: boolean;
   showLibraries: boolean;
+  showSettingsView: boolean;
 };
 
 class Main extends React.Component<any, State> {
@@ -47,6 +41,7 @@ class Main extends React.Component<any, State> {
       currentDocId: '',
       showLibraryView: false,
       showLibraries: true,
+      showSettingsView: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.showCreateLibraryForm = this.showCreateLibraryForm.bind(this);
@@ -118,6 +113,16 @@ class Main extends React.Component<any, State> {
     }
   };
 
+  showSettingsView = () => {
+    try {
+      this.setState({
+        showSettingsView: true,
+      });
+    } catch (error) {
+      log.error(`ERROR ${error}`);
+    }
+  };
+
   createLibrary = async (event: FormEvent<HTMLFormElement>) => {
     try {
       const libraryPath = event.currentTarget.elements.namedItem(
@@ -135,7 +140,7 @@ class Main extends React.Component<any, State> {
       const dt: any = new Date();
       const id = nanoid();
 
-      const dirTree = await window.electron.dirtree.getDirTree(
+      const dirTree = await window.electron.dirTree.getDirTree(
         libraryPath.value
       );
 
@@ -145,11 +150,11 @@ class Main extends React.Component<any, State> {
         libraryName: libraryName.value,
         libraryDesc: libraryDesc.value,
         libraryTree: dirTree,
+        treeCount: dirTree.children.length,
         createdAt: dt.toISOString(),
       };
 
       const currentDocId = await window.electron.database.createLibrary(doc);
-      log.info(currentDocId);
 
       this.setState({
         currentDocId: currentDocId?.id,
@@ -175,6 +180,7 @@ class Main extends React.Component<any, State> {
       libraryName,
       libraryPath,
       showLibraries,
+      showSettingsView,
     } = this.state;
     return (
       <>
@@ -188,7 +194,7 @@ class Main extends React.Component<any, State> {
                 >
                   <div className="fw-bolder fs-2 mx-auto mb-3 border rounded border-secondary shadow-sm align-middle">
                     <i className="ms-1 me-1 bi bi-collection-fill" />
-                    File Friend
+                    File Base
                   </div>
                   <hr />
                   <Nav className="flex-column mx-auto">
@@ -209,6 +215,7 @@ class Main extends React.Component<any, State> {
                       <NavLink
                         active={false}
                         href="#"
+                        onClick={this.showSettingsView}
                         className="text-dark rounded"
                       >
                         <i className="me-2 bi bi-sliders" />
@@ -253,6 +260,11 @@ class Main extends React.Component<any, State> {
                       libraryName={libraryName}
                       closeLibraryView={this.closeLibraryView}
                     />
+                  </ErrorBoundary>
+                ) : null}
+                {showSettingsView ? (
+                  <ErrorBoundary>
+                    <SettingsView />
                   </ErrorBoundary>
                 ) : null}
               </Row>

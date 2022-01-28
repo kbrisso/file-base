@@ -22,6 +22,7 @@ export class Row {
         libraryPath: string;
         libraryName: string;
         libraryDesc: string;
+        treeCount: number;
         libraryTree: string;
         createdAt: string;
         _id: string;

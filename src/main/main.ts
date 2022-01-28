@@ -8,17 +8,17 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import path from 'path';
-import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
-import { autoUpdater } from 'electron-updater';
-import log from 'electron-log';
-import Drive from 'node-disk-info/dist/classes/drive';
-import PouchDB from 'pouchdb';
-import { DirectoryTree } from 'directory-tree';
-import MenuBuilder from './menu';
-import { resolveHtmlPath } from './util';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import path from "path";
+import { app, BrowserWindow, dialog, ipcMain, shell } from "electron";
+import { autoUpdater } from "electron-updater";
+import log from "electron-log";
+import Drive from "node-disk-info/dist/classes/drive";
+import PouchDB from "pouchdb";
+import { DirectoryTree } from "directory-tree";
+import MenuBuilder from "./menu";
+import { resolveHtmlPath } from "./util";
 
 const { createLogger, format, transports } = require('winston');
 
@@ -88,8 +88,8 @@ PouchDB.plugin(require('pouchdb-find'));
  .catch(function (error) {
     logger.log('error', new Error(error));
   });
+**/
 
- */
 
 DB.createIndex({
   index: { fields: ['createdAt', '_id'] },
@@ -100,7 +100,6 @@ DB.info()
     logger.info(JSON.stringify(info));
   })
   .catch((error) => logger.log('error', new Error(error)));
-
 /* function getFiles(): void {
   const api = new fdir()
     .withFullPaths()
@@ -119,7 +118,7 @@ ipcMain.handle('get-dir-tree', async (event, arg) => {
     });
     return tree;
   } catch (error: any) {
-    logger.error(`get-libraries-main new ${Error(error)}`);
+    logger.error(`get-dir-tree ${Error(error)}`);
   }
   return null;
 });
@@ -135,6 +134,7 @@ ipcMain.handle('get-libraries', async (event, arg) => {
       'libraryName',
       'libraryDesc',
       'createdAt',
+      'treeCount',
       '_id',
       '_rev',
     ],
@@ -145,7 +145,7 @@ ipcMain.handle('get-libraries', async (event, arg) => {
       return doc;
     })
     .catch(function (error) {
-      logger.error(`get-libraries-main new ${Error(error)}`);
+      logger.error(`get-libraries-main error ${Error(error)}`);
     });
 });
 
@@ -160,6 +160,7 @@ ipcMain.handle('get-library-by-id', async (event, arg) => {
       'libraryName',
       'libraryDesc',
       'libraryTree',
+      'treeCount',
       'createdAt',
       '_id',
       '_rev',
@@ -170,7 +171,7 @@ ipcMain.handle('get-library-by-id', async (event, arg) => {
       return doc;
     })
     .catch(function (error) {
-      logger.error(`get-libraries-by-id-main ${new Error(error)}`);
+      logger.error(`get-libraries-by-id-main error ${new Error(error)}`);
     });
 });
 
@@ -185,7 +186,7 @@ ipcMain.handle('browse-files', async (event, arg) => {
         return result;
       })
       .catch((error) => {
-        logger.error(`browse-files-main ${new Error(error)}`);
+        logger.error(`browse-files-main error ${new Error(error)}`);
       });
   }
   return null;

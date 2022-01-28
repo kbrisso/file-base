@@ -1,10 +1,10 @@
-import DataTable, { TableColumn } from 'react-data-table-component';
-import { Button, Card } from 'react-bootstrap';
-import React from 'react';
-import log from 'loglevel';
-import dayjs from 'dayjs';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
-import FormCheckLabel from 'react-bootstrap/FormCheckLabel';
+import DataTable, { TableColumn } from "react-data-table-component";
+import { Button, Card } from "react-bootstrap";
+import React from "react";
+import log from "loglevel";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import FormCheckLabel from "react-bootstrap/FormCheckLabel";
 
 interface DataRow {
   path: string;
@@ -152,8 +152,8 @@ class LibraryView extends React.Component<Props, State> {
       if (docs.docs[0].libraryTree !== undefined) {
         const iterate = (obj: { [x: string]: any }) => {
           Object.keys(obj).forEach((key) => {
-            if (typeof obj[key] !== 'object') {
-              if (prevPath !== obj.path) {
+            if (prevPath !== obj.path) {
+              if (typeof obj[key] !== 'object') {
                 const row: DataRow = {
                   name: obj.name,
                   path: obj.path,
@@ -166,13 +166,14 @@ class LibraryView extends React.Component<Props, State> {
                 rowData.push(row);
                 prevPath = obj.path;
               }
-            }
-            if (typeof obj[key] === 'object') {
-              iterate(obj[key]);
+              if (typeof obj[key] === 'object') {
+                prevPath = obj.path;
+                iterate(obj[key]);
+              }
             }
           });
         };
-        iterate(docs.docs[0].libraryTree);
+        iterate(docs.docs[0].libraryTree.children);
         this.setState({
           data: rowData,
           docID,

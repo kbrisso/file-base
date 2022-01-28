@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
-import { Button, ButtonGroup, Card, Col, Row } from 'react-bootstrap';
-import { BinocularsFill, Collection, PencilFill } from 'react-bootstrap-icons';
-import log from 'loglevel';
-import dayjs from 'dayjs';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
+import React, { Fragment } from "react";
+import { Button, ButtonGroup, Card, Col, Row } from "react-bootstrap";
+import { BinocularsFill, Collection } from "react-bootstrap-icons";
+import log from "loglevel";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 
 type State = {
   libraries?: any;
@@ -79,41 +79,44 @@ class Libraries extends React.Component<Props, State> {
                   </div>
                 </Card.Header>
                 <Card.Body>
-                  <Card.Text as="div" className="m-2">
+                  <Card.Text as="div" className="m-2 border-bottom border-2">
                     <span style={{ fontSize: 14, fontWeight: 'bold' }}>
                       Library Description:
                     </span>
                     <Card.Text as="div">{d.libraryDesc}</Card.Text>
                   </Card.Text>
-                  <Card.Text as="div" className="m-2">
+                  <Card.Text as="div" className="m-2 border-bottom border-2">
                     <span
                       className="mb-1"
                       style={{ fontSize: 14, fontWeight: 'bold' }}
                     >
                       Library path:
                     </span>
-                    <Card.Text as="div">{d.libraryPath}</Card.Text> <br />
-                    <ButtonGroup size="sm" className="mt-3">
-                      <Button variant="outline-dark">
-                        <BinocularsFill
-                          width="1.5em"
-                          height="1.5em"
-                          className="bi p-1"
-                        />
-                      </Button>
-                      <Button
-                        onClick={showLibraryView}
-                        value={d._id}
-                        variant="outline-dark"
-                      >
-                        <PencilFill
-                          width="1.5em"
-                          height="1.5em"
-                          className="bi p-1"
-                        />
-                      </Button>
-                    </ButtonGroup>
+                    <Card.Text as="div">{d.libraryPath}</Card.Text>
                   </Card.Text>
+                  <Card.Text as="div" className="m-2 border-bottom border-2">
+                    <span style={{ fontSize: 14, fontWeight: 'bold' }}>
+                      Number of files / folders:&nbsp;
+                    </span>
+                    <Card.Text as="div">{d.treeCount}</Card.Text>
+                  </Card.Text>
+                  <div className="d-flex mb-3">
+                    <div className="align-items-end">
+                      <ButtonGroup size="sm" className="mt-3">
+                        <Button
+                          variant="outline-dark"
+                          onClick={showLibraryView}
+                          value={d._id}
+                        >
+                          <BinocularsFill
+                            width="1.5em"
+                            height="1.5em"
+                            className="bi p-1"
+                          />
+                        </Button>
+                      </ButtonGroup>
+                    </div>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>
