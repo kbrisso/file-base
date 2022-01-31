@@ -46,14 +46,14 @@ const logger = createLogger({
     format.splat(),
     format.json()
   ),
-  defaultMeta: { service: 'file-friend' },
+  defaultMeta: { service: 'file-base' },
   transports: [
     //
     // - Write to all logs with level `info` and below to `quick-start-combined.log`.
     // - Write all logs error (and below) to `quick-start-error.log`.
     //
 
-    new transports.File({ filename: 'app.log' }),
+   // new transports.File({ filename: 'app.log' }),
   ],
 });
 
@@ -77,7 +77,7 @@ function getDriveList(): Promise<Drive> {
 }
 
 /** Setup database* */
-const DB = new PouchDB('C:/Projects/pouch-serv/file-base');
+const DB = new PouchDB('./db/file-base');
 PouchDB.plugin(require('pouchdb-find'));
 
 /*

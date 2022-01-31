@@ -209,7 +209,7 @@ class Main extends React.Component<any, State> {
                 >
                   <div className="fw-bolder fs-2 mx-auto mb-3 border rounded border-secondary shadow-sm align-middle">
                     <i className="ms-1 me-1 bi bi-collection-fill" />
-                    File Base
+                    filebase
                   </div>
                   <hr />
                   <Nav className="flex-column mx-auto">
