@@ -8,17 +8,17 @@
  * When running `npm run build` or `npm run build:main`, this file is compiled to
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import path from "path";
-import { app, BrowserWindow, dialog, ipcMain, shell } from "electron";
-import { autoUpdater } from "electron-updater";
-import log from "electron-log";
-import Drive from "node-disk-info/dist/classes/drive";
-import PouchDB from "pouchdb";
-import { DirectoryTree } from "directory-tree";
-import MenuBuilder from "./menu";
-import { resolveHtmlPath } from "./util";
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import path from 'path';
+import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
+import { autoUpdater } from 'electron-updater';
+import log from 'electron-log';
+import Drive from 'node-disk-info/dist/classes/drive';
+import PouchDB from 'pouchdb';
+import { DirectoryTree } from 'directory-tree';
+import MenuBuilder from './menu';
+import { resolveHtmlPath } from './util';
 
 const { createLogger, format, transports } = require('winston');
 
@@ -77,10 +77,10 @@ function getDriveList(): Promise<Drive> {
 }
 
 /** Setup database* */
-const DB = new PouchDB('C:/Projects/pouch-serv/file-friend');
+const DB = new PouchDB('C:/Projects/pouch-serv/file-base');
 PouchDB.plugin(require('pouchdb-find'));
 
-/**
+/*
  DB.destroy()
  .then(function () {
     // database destroyed
@@ -88,8 +88,7 @@ PouchDB.plugin(require('pouchdb-find'));
  .catch(function (error) {
     logger.log('error', new Error(error));
   });
-**/
-
+*/
 
 DB.createIndex({
   index: { fields: ['createdAt', '_id'] },
@@ -100,6 +99,7 @@ DB.info()
     logger.info(JSON.stringify(info));
   })
   .catch((error) => logger.log('error', new Error(error)));
+
 /* function getFiles(): void {
   const api = new fdir()
     .withFullPaths()

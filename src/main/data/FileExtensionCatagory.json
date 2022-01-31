@@ -1,0 +1,14 @@
+{
+"WEB":["CSS","LESS","SCSS","WASM"],
+"AUDIO":["AAC","AIFF","APE","AU","FLAC","GSM","IT","M3U","M4A","MID","MOD","MP3","MPA","PLS","RA","S3M","SID","WAV","WMA","XM"],
+"CODE":["C","CC","CLASS","CLJ","CPP","CS","CXX","EL","GO","H","JAVA","LUA","M","M4","PHP","PL","PO","PY","RB","RS","SWIFT","VB","VCXPROJ","XCODEPROJ","XML","DIFF","PATCH","HTML","JS"],
+"SLIDE":["PPT","ODP"],
+"SHEET":["ODS","XLS","XLSX","CSV","ICS","VCF"],
+"IMAGE":["3DM","3DS","","MAX","BMP","DDS","GIF","JPG","JPEG","PNG","PSD","XCF","TGA","THM","TIF","TIFF","AI","EPS","PS","SVG","DWG","DXF","GPX","KML","KMZ","WEBP"],
+"ARCHIV":["7Z","AAPK","AR","BZ2","CAB","CPIO","DEB","DMG","EGG","GZ","ISO","JAR","LHA","MAR","PEA","RAR","RPM","S7Z","SHAR","TAR","TBZ2","TGZ","TLZ","WAR","WHL","XPI","ZIP","ZIPX","XZ","PAK"],
+"BOOK":["MOBI","EPUB","AZW1","ZW3","AZW4","AZW6","AZW","CBR","CBZ"],
+"TEXT":["DOC","DOCX","EBOOK","LOG","MD","MSG","ODT","ORG","PAGES","PDF","RTF","RST","TEX","TXT","WPD","WPS"],
+"EXEC":["EXE","MSI","BIN","COMMAND","SH","BAT","CRX"],
+"FONT":["EOT","OTF","TTF","WOFF","WOFF2"],
+"VIDEO":["3G2","3GP","AAF","ASF","AVCHD","AVI","DRC","FLV","M2V","M4P","M4V","MKV","MNG","MOV","MP2","MP4","MPE","MPEG","MPG","MPV","MXF","NSV","OGG","OGV","OGM","QT","RM","RMVB","ROQ","SRT","SVI","VOB","WEBM","WMV","YUV"]
+}

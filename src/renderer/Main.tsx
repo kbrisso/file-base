@@ -1,51 +1,52 @@
-import React, { FormEvent } from "react";
-import Container from "react-bootstrap/Container";
-import { MemoryRouter as Router } from "react-router";
-import { Route, Switch } from "react-router-dom";
-import { Button, Col, ListGroup, Nav, NavItem, NavLink, Row } from "react-bootstrap";
+import React, { FormEvent } from 'react';
+import Container from 'react-bootstrap/Container';
+import { MemoryRouter as Router } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
+import { Button, Col, ListGroup, Nav, NavItem, NavLink, Row, } from 'react-bootstrap';
 
-import { nanoid } from "nanoid";
-import { PlusCircleDotted } from "react-bootstrap-icons";
-import log from "loglevel";
+import { nanoid } from 'nanoid';
+import { PlusCircleDotted } from 'react-bootstrap-icons';
+import log from 'loglevel';
 
-import DriveList from "./Drive";
-import Search from "./Search";
-import "./css/sidebars.css";
-import "./css/main.css";
-import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
-import Libraries from "./Libraries";
-import LibraryView from "./LibraryView";
-import LibraryModalForm from "./LibraryModalForm";
-import ErrorBoundary from "./ErrorBoundary";
-import SettingsView from "./SettingsView";
+import DriveList from './Drive';
+import Search from './Search';
+import './css/sidebars.css';
+import './css/main.css';
+import '../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
+import Libraries from './Libraries';
+import LibraryView from './LibraryView';
+import LibraryModalForm from './LibraryModalForm';
+import ErrorBoundary from './ErrorBoundary';
+import SettingsModalForm from './SettingsModalForm';
 
 type State = {
-  showModal: boolean;
+  showLibraryModal: boolean;
   libraryPath: string;
   libraryName: string;
   libraryDesc: string;
   currentDocId: string;
   showLibraryView: boolean;
   showLibraries: boolean;
-  showSettingsView: boolean;
+  showSettingsModal: boolean;
 };
 
 class Main extends React.Component<any, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      showModal: false,
+      showLibraryModal: false,
       libraryPath: '',
       libraryName: '',
       libraryDesc: '',
       currentDocId: '',
       showLibraryView: false,
       showLibraries: true,
-      showSettingsView: false,
+      showSettingsModal: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.showCreateLibraryForm = this.showCreateLibraryForm.bind(this);
     this.showLibraryView = this.showLibraryView.bind(this);
+    this.showSettingsEditForm = this.showSettingsEditForm.bind(this);
   }
 
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -73,7 +74,7 @@ class Main extends React.Component<any, State> {
 
   showCreateLibraryForm = async () => {
     try {
-      this.setState({ showModal: true });
+      this.setState({ showLibraryModal: true });
     } catch (error) {
       log.error(`ERROR ${error}`);
     }
@@ -81,7 +82,23 @@ class Main extends React.Component<any, State> {
 
   closeCreateLibraryForm = async () => {
     try {
-      this.setState({ showModal: false });
+      this.setState({ showLibraryModal: false });
+    } catch (error) {
+      log.error(`ERROR ${error}`);
+    }
+  };
+
+  closeSettingsEditForm = async () => {
+    try {
+      this.setState({ showSettingsModal: false });
+    } catch (error) {
+      log.error(`ERROR ${error}`);
+    }
+  };
+
+  showSettingsEditForm = async () => {
+    try {
+      this.setState({ showSettingsModal: true });
     } catch (error) {
       log.error(`ERROR ${error}`);
     }
@@ -113,11 +130,9 @@ class Main extends React.Component<any, State> {
     }
   };
 
-  showSettingsView = () => {
+  editSettings = async (event: FormEvent<HTMLFormElement>) => {
     try {
-      this.setState({
-        showSettingsView: true,
-      });
+      event.preventDefault();
     } catch (error) {
       log.error(`ERROR ${error}`);
     }
@@ -159,7 +174,7 @@ class Main extends React.Component<any, State> {
       this.setState({
         currentDocId: currentDocId?.id,
         showLibraryView: true,
-        showModal: false,
+        showLibraryModal: false,
         libraryPath: '',
         libraryName: '',
         libraryDesc: '',
@@ -174,13 +189,13 @@ class Main extends React.Component<any, State> {
   render() {
     const {
       currentDocId,
-      showModal,
+      showLibraryModal,
       showLibraryView,
       libraryDesc,
       libraryName,
       libraryPath,
       showLibraries,
-      showSettingsView,
+      showSettingsModal,
     } = this.state;
     return (
       <>
@@ -215,7 +230,7 @@ class Main extends React.Component<any, State> {
                       <NavLink
                         active={false}
                         href="#"
-                        onClick={this.showSettingsView}
+                        onClick={this.showSettingsEditForm}
                         className="text-dark rounded"
                       >
                         <i className="me-2 bi bi-sliders" />
@@ -262,11 +277,6 @@ class Main extends React.Component<any, State> {
                     />
                   </ErrorBoundary>
                 ) : null}
-                {showSettingsView ? (
-                  <ErrorBoundary>
-                    <SettingsView />
-                  </ErrorBoundary>
-                ) : null}
               </Row>
             </Col>
             <Col className="col-2">
@@ -279,7 +289,7 @@ class Main extends React.Component<any, State> {
           <Row>
             <ErrorBoundary>
               <LibraryModalForm
-                showModal={showModal}
+                showLibraryModal={showLibraryModal}
                 createLibrary={this.createLibrary}
                 libraryDesc={libraryDesc}
                 libraryName={libraryName}
@@ -287,6 +297,14 @@ class Main extends React.Component<any, State> {
                 handleFormChange={this.handleChange as any}
                 libraryPath={libraryPath}
                 onBrowse={this.onBrowse}
+              />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <SettingsModalForm
+                showSettingsModal={showSettingsModal}
+                editSettings={this.editSettings}
+                closeSettingsModalForm={this.closeSettingsEditForm}
+                handleFormChange={this.handleChange as any}
               />
             </ErrorBoundary>
           </Row>

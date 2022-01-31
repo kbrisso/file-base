@@ -2,8 +2,8 @@ import React from 'react';
 import log from 'loglevel';
 
 type State = {
-  error: any;
-  errorInfo: any;
+  error: string | null;
+  errorInfo: any | null;
 };
 
 type Props = {

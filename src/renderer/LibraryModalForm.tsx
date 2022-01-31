@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 type Props = {
-  showModal: boolean;
+  showLibraryModal: boolean;
   libraryName: string;
   libraryDesc: string;
   libraryPath: string;
@@ -36,13 +36,13 @@ class LibraryModalForm extends React.Component<Props, {}> {
       libraryName,
       libraryDesc,
       libraryPath,
-      showModal,
+      showLibraryModal,
       onBrowse,
       closeCreateLibraryForm,
     } = this.props;
     return (
       <div>
-        <Modal centered size="lg" animation={false} show={showModal}>
+        <Modal centered size="lg" animation={false} show={showLibraryModal}>
           <form
             className="bg-light border rounded border-secondary shadow-lg"
             onSubmit={this.onTrigger}
