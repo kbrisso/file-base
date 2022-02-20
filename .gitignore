@@ -119,3 +119,5 @@ dist
 /db/**
 /release/**
 /.erb/dll/**
+/.erb/dll/
+/db/
