@@ -117,3 +117,4 @@ dist
 /.idea/vcs.xml
 /.idea/watcherTasks.xml
 /db/**
+/release/**
