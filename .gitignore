@@ -116,3 +116,4 @@ dist
 /.erb/dll/renderer.json
 /.idea/vcs.xml
 /.idea/watcherTasks.xml
+/db/**
