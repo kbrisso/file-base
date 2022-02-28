@@ -1,5 +1,5 @@
-import React, { createRef, FormEventHandler, MouseEventHandler } from 'react';
-import { Button, Image, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, { FormEventHandler, MouseEventHandler } from 'react';
+import { Button, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import log from 'loglevel';
 import FormCheckInput from 'react-bootstrap/FormCheckInput';
@@ -8,7 +8,7 @@ import { nanoid } from 'nanoid';
 import fileTypes from '../main/data/Extensions.json';
 
 const data: any[] = JSON.parse(JSON.stringify(fileTypes as any));
-const ref = createRef<HTMLUListElement>() || 0;
+
 const rowData: any = [];
 
 interface DataRow {
@@ -25,7 +25,6 @@ type Props = {
 
 type State = {
   selectedRows: [];
-  show: boolean;
 };
 
 class SettingsModalForm extends React.Component<Props, State> {
@@ -33,7 +32,6 @@ class SettingsModalForm extends React.Component<Props, State> {
     super(props);
     this.state = {
       selectedRows: [],
-      show: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -62,174 +60,244 @@ class SettingsModalForm extends React.Component<Props, State> {
     event.preventDefault();
   }
 
-  setShow() {
-    console.log('here');
-    this.setState({ show: true });
-  }
-
-  overlay = () => {
-    return (
-      <OverlayTrigger
-        placement="bottom"
-        overlay={<Tooltip id="button-tooltip-2">Check out this avatar</Tooltip>}
-      >
-        {({ ref, ...triggerHandler }) => (
-          <Button
-            variant="light"
-            {...triggerHandler}
-            className="d-inline-flex align-items-center"
-          >
-            <Image
-              ref={ref}
-              roundedCircle
-              src="holder.js/20x20?text=J&bg=28a745&fg=FFF"
-            />
-            <span className="ms-1">Hover to see</span>
-          </Button>
-        )}
-      </OverlayTrigger>
-    );
-  };
-
   onTrigger = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { editSettings } = this.props;
     editSettings(event);
   };
 
-  checkHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    log.info('checked');
-    event.preventDefault();
-  };
-
   fileTypeFormat = (val: string) => {
     switch (val) {
       case 'FONT':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-file-earmark-font dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Font file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-file-earmark-font dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'WEB':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-globe2 dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Web file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-globe2 dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'AUDIO':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-file-earmark-music dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Audio file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-file-earmark-music dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'CODE':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-code dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Code file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-code dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'SLIDE':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-file-ppt  dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">PPT file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-file-ppt dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'SHEET':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-file-spreadsheet dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Sheet file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-file-spreadsheet dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'VIDEO':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-file-earmark-play dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Video file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-file-earmark-play dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'TEXT':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-card-text dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Text file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-card-text dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'EXE':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-filetype-exe  dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">EXE file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-filetype-exe  dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'IMAGE':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-file-image  dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Image file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-file-image  dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
         break;
       case 'ARCHIV':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-file-earmark-zip dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Archive file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <div id={nanoid()} ref={ref} {...triggerHandler}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-file-earmark-zip"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M5 7.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v.938l.4 1.599a1 1 0 0 1-.416 1.074l-.93.62a1 1 0 0 1-1.11 0l-.929-.62a1 1 0 0 1-.415-1.074L5 8.438V7.5zm2 0H6v.938a1 1 0 0 1-.03.243l-.4 1.598.93.62.929-.62-.4-1.598A1 1 0 0 1 7 8.438V7.5z" />
+                  <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1h-2v1h-1v1h1v1h-1v1h1v1H6V5H5V4h1V3H5V2h1V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
+                </svg>
+              </div>
+            )}
+          </OverlayTrigger>
         );
       case 'BOOK':
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-bookdataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">PPT file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <i
+                id={nanoid()}
+                ref={ref}
+                {...triggerHandler}
+                className="bi bi-book dataIcon"
+              />
+            )}
+          </OverlayTrigger>
         );
       default:
         return (
-          <i
-            id={nanoid()}
-            ref={ref}
-            onClick={() => this.setShow}
-            className="bi bi-layout-wtf dataIcon"
-          />
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip id="button-tooltip-2">Unknown file</Tooltip>}
+          >
+            {({ ref, ...triggerHandler }) => (
+              <div id={nanoid()} ref={ref} {...triggerHandler}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-layout-wtf"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M5 1v8H1V1h4zM1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm13 2v5H9V2h5zM9 1a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9zM5 13v2H3v-2h2zm-2-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3zm12-1v2H9v-2h6zm-6-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H9z" />
+                </svg>
+              </div>
+            )}
+          </OverlayTrigger>
         );
     }
   };
