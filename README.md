@@ -59,6 +59,7 @@ Filebase will always remain free and the another goal is cross-platform usabilit
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Installing and running application in dev.
+<a name="About Filebase"</a>
 
 Currently, there is no installation package because project is under active development.
 
@@ -67,6 +68,7 @@ If you want to try it in dev, clone the repo and then run npm install, then npm 
 You might need to remove pouchdb package from the main package file when npm install is run. After install is run just add it back and run npm start.
 
 ## Roadmap
+<a name="About Filebase"</a>
 
 The feature list is the following
 Library creation and edit.
@@ -83,6 +85,7 @@ See the [open issues](https://github.com/kbrisso/file-base/issues) for a full li
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributing
+<a name="Contributing</a>
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -98,12 +101,14 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## License
+<a name="License"</a>
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contact
+<a name="Contact"</a>
 
 Kevin Brisson - [LinkedIn](https://www.linkedin.com/in/kevin-brisson-918445185/) - kbrisso@gmail.com
 
