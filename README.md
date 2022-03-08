@@ -7,7 +7,7 @@
 
 # Table of Contents
 
-1. [About Filebase](#AboutFilebase)
+1. [About](#About)
 2. [Built with](#Built with)
 3. [Installing and running application in dev.](#Installingandrunningapplicationindev)
 4. [Roadmap](#Roadmap)
