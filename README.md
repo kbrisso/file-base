@@ -45,7 +45,7 @@ Settings - choose file extensions to index.
 
 ![](/assets/github-images/settings.jpg)
 
-Filebase will always remain free and the another goal is to have cross-platform usability.
+Filebase will always remain free and the other goal is to have cross-platform usability.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
