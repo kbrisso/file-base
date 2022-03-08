@@ -1,7 +1,7 @@
 <div id="top"></div>
 <h3 align="center">Filebase <i>beta</i></h3>
-<p align="center">
-    Filebase is like a database for your files and directories. It's just not another file explorer. You can tag, add notes, organize, categorize, filter, search and quickly find your needed files with an easy-to-use application. Filebase does not modify your existing files or directories and is designed for people who have a lot of files to keep track of and want to keep them organized and located quickly! There are other file utilities on the market but none focus on organization.
+<p>
+    Filebase is a database for your files and directories. It's just not another file explorer. You can tag, add notes, organize, categorize, filter, search and quickly find your needed files with an easy-to-use application. Filebase does not modify your existing files or directories and is designed for people who have a lot of files to keep track of and want to keep them organized and located quickly! There are other file utilities on the market but none focus on organization.
     <br />   
 </p>
 
