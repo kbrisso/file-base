@@ -9,7 +9,7 @@
 
 1. [About](#About)
 2. [Built with](#Built with)
-3. [Installing and running application in dev.](#Installingandrunningapplicationindev)
+3. [Installing and running application in dev.](#Installing and running application in dev)
 4. [Roadmap](#Roadmap)
 5. [Contributing](#Contributing)
 6. [License](#License)
