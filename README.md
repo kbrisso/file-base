@@ -1,7 +1,7 @@
 <div id="top"></div>
-<h3 align="center">Filebase beta</h3>
+<h3 align="center">Filebase <i>beta</i></h3>
 <p align="center">
-    Filebase is a database for your files. It's not another file explorer. You can tag, add notes, organize, categorize, filter, search and find your files with an easy-to-use application. Filebase does not modify your files and is designed for people who have lots of files and want to keep them organized!
+    Filebase is like a database for your files and directories. It's just not another file explorer. You can tag, add notes, organize, categorize, filter, search and quickly find your needed files with an easy-to-use application. Filebase does not modify your existing files or directories and is designed for people who have a lot of files to keep track of and want to keep them organized and located quickly! There are other file utilities on the market but none focus on organization.
     <br />   
 </p>
 
@@ -16,50 +16,50 @@
 7. [Contact](#Contact)
 
 ## About Filebase
-<a name="About Filebase"</a>
 
-Filebase was created out of frustration, I was watching my partner go through her Cricut project images one by one and try to organize them, I noticed there is no real way to keep track of files and directories with Windows Explorer. I wanted to learn Electron and that was the catalyst for Filebase!. If anyone remembers Picasa image viewer from Google that tool was the general idea for this application. It was just easy to use and fast. I want to keep this application simple to use and fast.
+Filebase was created out of frustration, I was watching my partner go through her Cricut project images one by one and trying to organize them, I noticed there is no real way to keep track of files and directories with Windows Explorer. Other tools on the market focused on archiving and some modified the files. Searching in Windows Explorer is marginal at best. You can add an attribute to files, but it is slow. I wanted to learn Electron and frustration was the catalyst for Filebase!. If anyone remembers Picasa image viewer from Google that application was the general idea for this application. It was just easy to use and fast. I want to keep this application simple to use and fast no feature bloat.
 
-Filebase is in the early design stages and will change often. I can't guarantee that updates will be backwards compatible. Feel free to try but please wait for the first release before you create a bunch of libraries!  
+Filebase is in the early design stages and will be changed often. I can't guarantee that updates will be backwards compatible. Feel free to try but please wait for the first release before you create a bunch of libraries!  
 
-Under the hood Filebase uses PouchDB to store file and directory structure using a tree type structure, each of these nodes in the tree can have metadata added to it that will be searchable. This is what makes Filebase unique. A library is a snapshot of a file or directory, if the file structure changes you can reindex the directory. If a file or directory is missing you can remove the reference to it or keep it in the index. 
+Under the hood Filebase uses PouchDB to store file and directory structure using a tree type structure, each of these nodes in the tree can have metadata added to it that will be searchable. This is what makes Filebase unique, a library is a snapshot of a file or directory when its created, if the file structure changes you can reindex the directory. If a file or directory is missing you can remove the reference to it or keep it in the index. 
 
-Main view with created libraries, a library can be a directory or file. If it is a directory Filebase scans the entired directory and indexes it.
+Screenshots of the application.
 
-![](C:\Projects\file-base\assets\github-images\main.jpg)
+Main view with created libraries, a library can be a directory or file. If it is a directory Filebase scans the entire directory and indexes it.
 
-Library view with files.
+![](/assets/github-images/main.jpg)
 
-![](C:\Projects\file-base\assets\github-images\library-view.jpg)
+Library view with files in directory.
 
-Cretae library - choose a directory or file.
+![](/assets/github-images/library-view.jpg)
 
-![](C:\Projects\file-base\assets\github-images\create-library.jpg)
+Create a new library - choose a directory or file to index.
 
-Drive info.
+![](/assets/github-images/create-library.jpg)
 
-![](C:\Projects\file-base\assets\github-images\drive-info.jpg)
+Drive info shown.
 
-Settings.
+![](/assets/github-images/drive-info.jpg)
 
-![](C:\Projects\file-base\assets\github-images\settings.jpg)
+Settings - choose file extensions to index.
 
-Filebase will always remain free and the another goal is cross-platform usability.
+![](/assets/github-images/settings.jpg)
+
+Filebase will always remain free and the another goal is to have cross-platform usability.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built with
-<a name="Built with"</a>
+
 * [Electron](https://www.electronjs.com)
 * [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
 * [React.js](https://reactjs.org/)
-* [pouchdb](https://pouchdb.com/)
+* [Pouchdb](https://pouchdb.com/)
 * [Bootstrap](https://getbootstrap.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Installing and running application in dev.
-<a name="Installing and running application in dev"</a>
+## Installing and running application in dev
 
 Currently, there is no installation package because project is under active development.
 
@@ -68,7 +68,6 @@ If you want to try it in dev, clone the repo and then run npm install, then npm 
 You might need to remove pouchdb package from the main package file when npm install is run. After install is run just add it back and run npm start.
 
 ## Roadmap
-<a name="Roadmap</a>
 
 The feature list is the following
 Library creation and edit.
@@ -85,7 +84,6 @@ See the [open issues](https://github.com/kbrisso/file-base/issues) for a full li
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributing
-<a name="Contributing</a>
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -101,14 +99,12 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## License
-<a name="License"</a>
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contact
-<a name="Contact"</a>
 
 Kevin Brisson - [LinkedIn](https://www.linkedin.com/in/kevin-brisson-918445185/) - kbrisso@gmail.com
 
