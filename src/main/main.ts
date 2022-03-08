@@ -103,6 +103,7 @@ DB.info()
 */
 
 ipcMain.handle('get-dir-tree', async (event, arg) => {
+  logger.info('get-dir-tree-main');
   let tree: DirectoryTree;
   try {
     tree = dirTree(arg, {
@@ -111,61 +112,59 @@ ipcMain.handle('get-dir-tree', async (event, arg) => {
     });
     return tree;
   } catch (error: any) {
-    logger.error(`get-dir-tree ${Error(error)}`);
+    logger.error(`get-dir-tree-main ${Error(error)}`);
   }
   return null;
 });
 
 ipcMain.handle('get-libraries', async (event, arg) => {
   logger.info('get-libraries-main');
-  return DB.find({
-    selector: {
-      createdAt: { $gte: null },
-    },
-    fields: [
-      'libraryPath',
-      'libraryName',
-      'libraryDesc',
-      'createdAt',
-      'treeCount',
-      '_id',
-      '_rev',
-    ],
-    sort: ['createdAt'],
-  })
-    .then(function (doc) {
-      logger.info(`get-libraries-main : doc   ${doc}`);
-      return doc;
-    })
-    .catch(function (error) {
-      logger.error(`get-libraries-main error ${Error(error)}`);
+  let doc = null;
+  try {
+    doc = await DB.find({
+      selector: {
+        createdAt: { $gte: null },
+      },
+      fields: [
+        'libraryPath',
+        'libraryName',
+        'libraryDesc',
+        'createdAt',
+        'treeCount',
+        '_id',
+        '_rev',
+      ],
+      sort: ['createdAt'],
     });
+  } catch (error: any) {
+    logger.error(`get-libraries-main ${new Error(error)}`);
+  }
+  return doc;
 });
 
 ipcMain.handle('get-library-by-id', async (event, arg) => {
   logger.info(`get-libraries-by-id-main : arg  ${arg}`);
-  return DB.find({
-    selector: {
-      _id: { $gte: arg },
-    },
-    fields: [
-      'libraryPath',
-      'libraryName',
-      'libraryDesc',
-      'libraryTree',
-      'treeCount',
-      'createdAt',
-      '_id',
-      '_rev',
-    ],
-  })
-    .then(function (doc) {
-      logger.info(`get-libraries-by-id-main : doc  ${doc}`);
-      return doc;
-    })
-    .catch(function (error) {
-      logger.error(`get-libraries-by-id-main error ${new Error(error)}`);
+  let doc = null;
+  try {
+    doc = await DB.find({
+      selector: {
+        _id: { $gte: arg },
+      },
+      fields: [
+        'libraryPath',
+        'libraryName',
+        'libraryDesc',
+        'libraryTree',
+        'treeCount',
+        'createdAt',
+        '_id',
+        '_rev',
+      ],
     });
+  } catch (error: any) {
+    logger.error(`get-libraries-main ${new Error(error)}`);
+  }
+  return doc;
 });
 
 ipcMain.handle('browse-files', async (event, arg) => {
@@ -179,7 +178,7 @@ ipcMain.handle('browse-files', async (event, arg) => {
         return result;
       })
       .catch((error) => {
-        logger.error(`browse-files-main error ${new Error(error)}`);
+        logger.error(`browse-files-main ${new Error(error)}`);
       });
   }
   return null;
@@ -192,14 +191,14 @@ ipcMain.handle('get-drives', async (event, arg) => {
 });
 
 ipcMain.handle('create-library', async (event, arg) => {
-  let response;
+  let response = null;
   try {
     response = await DB.put(arg);
     return response;
   } catch (error: any) {
     logger.log('error', new Error(error));
   }
-  return null;
+  return response;
 });
 
 if (process.env.NODE_ENV === 'production') {

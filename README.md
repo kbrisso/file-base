@@ -1,170 +1,87 @@
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
+<h3 align="center">Filebase beta</h3>
+<p align="center">
+    Filebase is a database for your files. It's not another file explorer. You can tag, add notes, organize, categorize, filter, search and find your files with an easy-to-use application. Filebase does not modify your files and is designed for people who have lots of files and want to keep them organized!
+    <br />   
+</p>
 
+# Table of Contents
 
+1. [About Filebase](#About Filebase)
+2. [Built with](#Built with)
+3. [Installing and running application in dev.](#Installing and running application in dev.)
+4. [Roadmap](#Roadmap)
+5. [Contributing](#Contributing)
+6. [License](#License)
+7. [Contact](#Contact)
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+## About Filebase
+<a name="About Filebase"</a>
 
+Filebase was created out of frustration, I was watching my partner go through her Cricut project images one by one and try to organize them, I noticed there is no real way to keep track of files and directories with Windows Explorer. I wanted to learn Electron and that was the catalyst for Filebase!. If anyone remembers Picasa image viewer from Google that tool was the general idea for this application. It was just easy to use and fast. I want to keep this application simple to use and fast.
 
+Filebase is in the early design stages and will change often. I can't guarantee that updates will be backwards compatible. Feel free to try but please wait for the first release before you create a bunch of libraries!  
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+Under the hood Filebase uses PouchDB to store file and directory structure using a tree type structure, each of these nodes in the tree can have metadata added to it that will be searchable. This is what makes Filebase unique. A library is a snapshot of a file or directory, if the file structure changes you can reindex the directory. If a file or directory is missing you can remove the reference to it or keep it in the index. 
 
-<h3 align="center">project_title</h3>
+Main view with created libraries, a library can be a directory or file. If it is a directory Filebase scans the entired directory and indexes it.
 
-  <p align="center">
-    project_description
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
-  </p>
-</div>
+![](C:\Projects\file-base\assets\github-images\main.jpg)
 
+Library view with files.
 
+![](C:\Projects\file-base\assets\github-images\library-view.jpg)
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+Cretae library - choose a directory or file.
 
+![](C:\Projects\file-base\assets\github-images\create-library.jpg)
 
+Drive info.
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+![](C:\Projects\file-base\assets\github-images\drive-info.jpg)
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Settings.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+![](C:\Projects\file-base\assets\github-images\settings.jpg)
+
+Filebase will always remain free and the another goal is cross-platform usability.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-### Built With
-
-* [Next.js](https://nextjs.org/)
+### Built with
+<a name="Built with"</a>
+* [Electron](https://www.electronjs.com)
+* [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
 * [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
+* [pouchdb](https://pouchdb.com/)
 * [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Installing and running application in dev.
 
+Currently, there is no installation package because project is under active development.
 
-<!-- GETTING STARTED -->
-## Getting Started
+If you want to try it in dev, clone the repo and then run npm install, then npm start.
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+You might need to remove pouchdb package from the main package file when npm install is run. After install is run just add it back and run npm start.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-  - [ ] Nested Feature
+The feature list is the following
+Library creation and edit.
+Searching of libraries.
+File and directory filtering, easy drill down.
+Searchable metadata related to the libraries and files.
+Export of database to JSON so it cn be backed up.
+Archiving of entire libraries safely so tht original files are not damaged.
+Archived libraries will still be searchable so that finding archived files and directories is easy to do.
+UnArchiving of libraries safely.
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/kbrisso/file-base/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -180,51 +97,21 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-
-
-<!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Kevin Brisson - [LinkedIn](https://www.linkedin.com/in/kevin-brisson-918445185/) - kbrisso@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
+Project Link: [https://github.com/kbrisso/file-base](https://github.com/kbrisso/file-base)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
+
+
