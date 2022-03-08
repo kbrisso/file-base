@@ -15,7 +15,7 @@
 6. [License](#License)
 7. [Contact](#Contact)
 
-## About Filebase
+## About
 
 Filebase was created out of frustration, I was watching my partner go through her Cricut project images one by one and trying to organize them, I noticed there is no real way to keep track of files and directories with Windows Explorer. Other tools on the market focused on archiving and some modified the files. Searching in Windows Explorer is marginal at best. You can add an attribute to files, but it is slow. I wanted to learn Electron and frustration was the catalyst for Filebase!. If anyone remembers Picasa image viewer from Google that application was the general idea for this application. It was just easy to use and fast. I want to keep this application simple to use and fast no feature bloat.
 
@@ -49,7 +49,7 @@ Filebase will always remain free and the another goal is to have cross-platform 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-### Built with
+## Built with
 
 * [Electron](https://www.electronjs.com)
 * [electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)
