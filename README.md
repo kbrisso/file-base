@@ -9,7 +9,7 @@
 
 1. [About Filebase](#About Filebase)
 2. [Built with](#Built with)
-3. [Installing and running application in dev.](#Installing and running application in dev.)
+3. [Installing and running application in dev.](#Installing and running application in dev)
 4. [Roadmap](#Roadmap)
 5. [Contributing](#Contributing)
 6. [License](#License)
@@ -59,7 +59,7 @@ Filebase will always remain free and the another goal is cross-platform usabilit
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Installing and running application in dev.
-<a name="About Filebase"</a>
+<a name="Installing and running application in dev"</a>
 
 Currently, there is no installation package because project is under active development.
 
@@ -68,7 +68,7 @@ If you want to try it in dev, clone the repo and then run npm install, then npm 
 You might need to remove pouchdb package from the main package file when npm install is run. After install is run just add it back and run npm start.
 
 ## Roadmap
-<a name="About Filebase"</a>
+<a name="Roadmap</a>
 
 The feature list is the following
 Library creation and edit.
