@@ -237,7 +237,7 @@
     "electron-debug": "^3.2.0",
     "electron-log": "^4.4.6",
     "electron-updater": "^4.6.5",
-    "fdir": "^5.1.0",
+    "fdir": "^5.2.0",
     "history": "4.x.x",
     "loglevel": "^1.8.0",
     "mime-db": "^1.51.0",
