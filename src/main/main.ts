@@ -16,6 +16,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import Drive from 'node-disk-info/dist/classes/drive';
 import PouchDB from 'pouchdb';
+import Find from 'pouchdb-find';
 import { DirectoryTree } from 'directory-tree';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -70,8 +71,8 @@ function getDriveList(): Promise<Drive> {
 }
 
 /** Setup database* */
-const DB = new PouchDB('./db/file-base');
-PouchDB.plugin(require('pouchdb-find'));
+PouchDB.plugin(Find);
+const db = new PouchDB('./db/file-base');
 
 /*
  DB.destroy()
@@ -83,15 +84,15 @@ PouchDB.plugin(require('pouchdb-find'));
   });
 */
 
-DB.createIndex({
+db.createIndex({
   index: { fields: ['createdAt', '_id'] },
 }).catch();
 
-DB.info()
-  .then(function (info) {
+db.info()
+  .then(function (info: any) {
     logger.info(JSON.stringify(info));
   })
-  .catch((error) => logger.log('error', new Error(error)));
+  .catch((error: string | undefined) => logger.log('error', new Error(error)));
 
 /* function getFiles(): void {
   const api = new fdir()
@@ -121,7 +122,7 @@ ipcMain.handle('get-libraries', async (event, arg) => {
   logger.info('get-libraries-main');
   let doc = null;
   try {
-    doc = await DB.find({
+    doc = await db.find({
       selector: {
         createdAt: { $gte: null },
       },
@@ -146,7 +147,7 @@ ipcMain.handle('get-library-by-id', async (event, arg) => {
   logger.info(`get-libraries-by-id-main : arg  ${arg}`);
   let doc = null;
   try {
-    doc = await DB.find({
+    doc = await db.find({
       selector: {
         _id: { $gte: arg },
       },
@@ -193,7 +194,7 @@ ipcMain.handle('get-drives', async (event, arg) => {
 ipcMain.handle('create-library', async (event, arg) => {
   let response = null;
   try {
-    response = await DB.put(arg);
+    response = await db.put(arg);
     return response;
   } catch (error: any) {
     logger.log('error', new Error(error));

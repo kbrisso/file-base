@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "types": [
+      "node",
+      "webdriverio/sync",
+      "@wdio/mocha-framework",
+      "@wdio/devtools-service"
+    ]
+  }
+}

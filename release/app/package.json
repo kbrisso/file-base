@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@types/pouchdb": "^6.4.0",
-    "bootstrap-icons": "^1.8.1",
+    "bootstrap-icons": "^1.7.2",
     "pouchdb": "^7.2.2"
   },
   "license": "MIT"

@@ -40,10 +40,12 @@ export default merge(baseConfig, {
   },
 
   optimization: {
+    minimize: false,
     minimizer: [
       new TerserPlugin({
         parallel: true,
       }),
+
     ],
   },
 

@@ -102,20 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
-/.idea/codeStyles/codeStyleConfig.xml
-/.idea/jsLinters/eslint.xml
-/.idea/file.template.settings.xml
-/.idea/file-base.iml
-/.idea/jsLibraryMappings.xml
-/.idea/dictionaries/kbrisso.xml
-/.idea/modules.xml
-/.idea/prettier.xml
-/.idea/codeStyles/Project.xml
-/.idea/inspectionProfiles/Project_Default.xml
-/.erb/dll/renderer.dev.dll.js
-/.erb/dll/renderer.json
-/.idea/vcs.xml
-/.idea/watcherTasks.xml
-/release/**
-/.erb/dll/**
-/db/file-base/**
+test-results/
+playwright-report/

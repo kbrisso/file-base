@@ -19,9 +19,9 @@
 
 Filebase was created out of frustration, I was watching my partner go through her Cricut project images one by one and trying to organize them, I noticed there is no real way to keep track of files and directories with Windows Explorer. Other tools on the market focused on archiving and some modified the files. Searching in Windows Explorer is marginal at best. You can add an attribute to files, but it is slow. I wanted to learn Electron and frustration was the catalyst for Filebase!. If anyone remembers Picasa image viewer from Google that application was the general idea for this application. It was just easy to use and fast. I want to keep this application simple to use and fast no feature bloat.
 
-Filebase is in the early design stages and will be changed often. I can't guarantee that updates will be backwards compatible. Feel free to try but please wait for the first release before you create a bunch of libraries!  
+Filebase is in the early design stages and will be changed often. I can't guarantee that updates will be backwards compatible. Feel free to try but please wait for the first release before you create a bunch of libraries!
 
-Under the hood Filebase uses PouchDB to store file and directory structure using a tree type structure, each of these nodes in the tree can have metadata added to it that will be searchable. This is what makes Filebase unique, a library is a snapshot of a file or directory when its created, if the file structure changes you can reindex the directory. If a file or directory is missing you can remove the reference to it or keep it in the index. 
+Under the hood Filebase uses PouchDB to store file and directory structure using a tree type structure, each of these nodes in the tree can have metadata added to it that will be searchable. This is what makes Filebase unique, a library is a snapshot of a file or directory when its created, if the file structure changes you can reindex the directory. If a file or directory is missing you can remove the reference to it or keep it in the index.
 
 Screenshots of the application.
 
