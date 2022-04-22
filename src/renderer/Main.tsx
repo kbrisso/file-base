@@ -1,8 +1,15 @@
 import React, { FormEvent } from 'react';
 import Container from 'react-bootstrap/Container';
-import { MemoryRouter as Router } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
-import { Button, Col, ListGroup, Nav, NavItem, NavLink, Row, } from 'react-bootstrap';
+import { MemoryRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  Button,
+  Col,
+  ListGroup,
+  Nav,
+  NavItem,
+  NavLink,
+  Row,
+} from 'react-bootstrap';
 
 import { nanoid } from 'nanoid';
 import { PlusCircleDotted } from 'react-bootstrap-icons';
@@ -317,9 +324,9 @@ class Main extends React.Component<any, State> {
 export default function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/" component={Main} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
     </Router>
   );
 }
