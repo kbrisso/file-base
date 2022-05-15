@@ -21,6 +21,15 @@ import { DirectoryTree } from 'directory-tree';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
+/* function getFiles(): void {
+  const api = new fdir()
+    .withFullPaths()
+    .crawl('C:\\Users\\kbrisso\\Downloads\\Photos');
+  const files = api.sync();
+  console.log(files);
+}
+*/
+
 const { createLogger, format, transports } = require('winston');
 
 const nodeDiskInfo = require('node-disk-info');
@@ -72,7 +81,60 @@ function getDriveList(): Promise<Drive> {
 
 /** Setup database* */
 PouchDB.plugin(Find);
-const db = new PouchDB('./db/file-base');
+
+const dbFileBase = new PouchDB('./db/file-base', { adapter: 'leveldb' });
+const dbFileExtensions = new PouchDB('./db/file-base-fe', {
+  adapter: 'leveldb',
+});
+const dbTags = new PouchDB('./db/file-base-tags', { adapter: 'leveldb' });
+
+const remoteFilebaseDB = new PouchDB(
+  'http://kbrisso:!kmbcpm22@localhost:5984/file-base'
+);
+
+const remoteFileExtensionsDB = new PouchDB(
+  'http://kbrisso:!kmbcpm22@localhost:5984/file-base-fe'
+);
+
+dbFileBase.replicate
+  .to(remoteFilebaseDB)
+  .on('complete', function () {
+    logger.log('info', 'replication-started');
+  })
+  .on('error', function (err) {
+    logger.log('error', err);
+  });
+
+dbFileBase
+  .sync(remoteFilebaseDB, {
+    live: true,
+  })
+  .on('change', function (change) {
+    logger.log('info', 'replication-changed');
+  })
+  .on('error', function (err) {
+    logger.log('error', err);
+  });
+
+dbFileExtensions.replicate
+  .to(remoteFileExtensionsDB)
+  .on('complete', function () {
+    logger.log('info', 'replication-started-fe');
+  })
+  .on('error', function (err) {
+    logger.log('error', err);
+  });
+
+dbFileExtensions
+  .sync(remoteFileExtensionsDB, {
+    live: true,
+  })
+  .on('change', function (change) {
+    logger.log('info', 'replication-changed-fe');
+  })
+  .on('error', function (err) {
+    logger.log('error', err);
+  });
 
 /*
  DB.destroy()
@@ -84,27 +146,27 @@ const db = new PouchDB('./db/file-base');
   });
 */
 
-db.createIndex({
-  index: { fields: ['createdAt', '_id'] },
-}).catch();
+dbFileBase
+  .createIndex({
+    index: { fields: ['createdAt', '_id'] },
+  })
+  .catch();
 
-db.info()
+dbFileBase
+  .info()
   .then(function (info: any) {
     logger.info(JSON.stringify(info));
   })
   .catch((error: string | undefined) => logger.log('error', new Error(error)));
 
-/* function getFiles(): void {
-  const api = new fdir()
-    .withFullPaths()
-    .crawl('C:\\Users\\kbrisso\\Downloads\\Photos');
-  const files = api.sync();
-  console.log(files);
-}
-*/
+dbFileExtensions
+  .info()
+  .then(function (info: any) {
+    logger.info(JSON.stringify(info));
+  })
+  .catch((error: string | undefined) => logger.log('error', new Error(error)));
 
 ipcMain.handle('get-dir-tree', async (event, arg) => {
-  logger.info('get-dir-tree-main');
   let tree: DirectoryTree;
   try {
     tree = dirTree(arg, {
@@ -119,10 +181,9 @@ ipcMain.handle('get-dir-tree', async (event, arg) => {
 });
 
 ipcMain.handle('get-libraries', async (event, arg) => {
-  logger.info('get-libraries-main');
   let doc = null;
   try {
-    doc = await db.find({
+    doc = await dbFileBase.find({
       selector: {
         createdAt: { $gte: null },
       },
@@ -144,10 +205,9 @@ ipcMain.handle('get-libraries', async (event, arg) => {
 });
 
 ipcMain.handle('get-library-by-id', async (event, arg) => {
-  logger.info(`get-libraries-by-id-main : arg  ${arg}`);
   let doc = null;
   try {
-    doc = await db.find({
+    doc = await dbFileBase.find({
       selector: {
         _id: { $gte: arg },
       },
@@ -169,7 +229,6 @@ ipcMain.handle('get-library-by-id', async (event, arg) => {
 });
 
 ipcMain.handle('browse-files', async (event, arg) => {
-  logger.info('browse-files-main');
   if (mainWindow !== null) {
     return dialog
       .showOpenDialog(mainWindow, {
@@ -185,6 +244,17 @@ ipcMain.handle('browse-files', async (event, arg) => {
   return null;
 });
 
+ipcMain.handle('get-file-extensions', async (event, arg) => {
+  let response = null;
+  try {
+    response = await dbFileExtensions.allDocs({ include_docs: true });
+    return response;
+  } catch (error: any) {
+    logger.error(`et-file-extensions ${new Error(error)}`);
+  }
+  return response;
+});
+
 ipcMain.handle('get-drives', async (event, arg) => {
   return getDriveList().then((result) => {
     return result;
@@ -194,7 +264,7 @@ ipcMain.handle('get-drives', async (event, arg) => {
 ipcMain.handle('create-library', async (event, arg) => {
   let response = null;
   try {
-    response = await db.put(arg);
+    response = await dbFileBase.put(arg);
     return response;
   } catch (error: any) {
     logger.log('error', new Error(error));

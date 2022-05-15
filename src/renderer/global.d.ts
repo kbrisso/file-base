@@ -10,12 +10,10 @@ export interface IElectron {
     createLibrary(doc: any): any;
     getLibraries(): any;
     getLibraryByID(id: any): any;
+    getFileTypes(): any;
   };
   dirTree: {
     getDirTree(args: any): any;
-  };
-  fileTypes: {
-    getFileTypes(): any;
   };
 }
 declare global {

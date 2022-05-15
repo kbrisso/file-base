@@ -1,6 +1,4 @@
-import assert = require('assert');
-import 'mocha';
-import 'expect-webdriverio';
+import * as assert from 'assert';
 
 describe('my awesome website', () => {
   it('should do some assertions', async () => {

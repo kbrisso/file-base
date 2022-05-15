@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { Button, ButtonGroup, Card, Col, Row } from "react-bootstrap";
-import { BinocularsFill, Collection } from "react-bootstrap-icons";
-import log from "loglevel";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
+import React, { Fragment } from 'react';
+import { Button, ButtonGroup, Card, Col, Row } from 'react-bootstrap';
+import { BinocularsFill, Collection } from 'react-bootstrap-icons';
+import log from 'loglevel';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 
 type State = {
   libraries?: any;
@@ -43,7 +43,6 @@ class Libraries extends React.Component<Props, State> {
     }
   }
 
-  // render will know everything!
   render() {
     dayjs.extend(localizedFormat);
     const { libraries } = this.state;

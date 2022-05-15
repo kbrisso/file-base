@@ -31,5 +31,8 @@ contextBridge.exposeInMainWorld('electron', {
     async getLibraryByID(args) {
       return ipcRenderer.invoke('get-library-by-id', args);
     },
+    async getFileTypes() {
+      return ipcRenderer.invoke('get-file-extensions');
+    },
   },
 });

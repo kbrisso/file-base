@@ -24,7 +24,7 @@ import Libraries from './Libraries';
 import LibraryView from './LibraryView';
 import LibraryModalForm from './LibraryModalForm';
 import ErrorBoundary from './ErrorBoundary';
-import SettingsModalForm from './SettingsModalForm';
+import SettingsView from './SettingsView';
 
 type State = {
   showLibraryModal: boolean;
@@ -34,7 +34,7 @@ type State = {
   currentDocId: string;
   showLibraryView: boolean;
   showLibraries: boolean;
-  showSettingsModal: boolean;
+  showSettingsView: boolean;
 };
 
 class Main extends React.Component<any, State> {
@@ -48,12 +48,12 @@ class Main extends React.Component<any, State> {
       currentDocId: '',
       showLibraryView: false,
       showLibraries: true,
-      showSettingsModal: false,
+      showSettingsView: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.showCreateLibraryForm = this.showCreateLibraryForm.bind(this);
     this.showLibraryView = this.showLibraryView.bind(this);
-    this.showSettingsEditForm = this.showSettingsEditForm.bind(this);
+    this.showSettingsView = this.showSettingsView.bind(this);
   }
 
   handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -95,17 +95,17 @@ class Main extends React.Component<any, State> {
     }
   };
 
-  closeSettingsEditForm = async () => {
+  closeSettingsView = () => {
     try {
-      this.setState({ showSettingsModal: false });
+      this.setState({ showSettingsView: false , showLibraries: true});
     } catch (error) {
       log.error(`ERROR ${error}`);
     }
   };
 
-  showSettingsEditForm = async () => {
+  showSettingsView = async () => {
     try {
-      this.setState({ showSettingsModal: true });
+      this.setState({ showSettingsView: true, showLibraries: false });
     } catch (error) {
       log.error(`ERROR ${error}`);
     }
@@ -131,14 +131,6 @@ class Main extends React.Component<any, State> {
         currentDocId: target.value,
         showLibraries: false,
       });
-      event.preventDefault();
-    } catch (error) {
-      log.error(`ERROR ${error}`);
-    }
-  };
-
-  editSettings = async (event: FormEvent<HTMLFormElement>) => {
-    try {
       event.preventDefault();
     } catch (error) {
       log.error(`ERROR ${error}`);
@@ -202,7 +194,7 @@ class Main extends React.Component<any, State> {
       libraryName,
       libraryPath,
       showLibraries,
-      showSettingsModal,
+      showSettingsView,
     } = this.state;
     return (
       <>
@@ -237,7 +229,7 @@ class Main extends React.Component<any, State> {
                       <NavLink
                         active={false}
                         href="#"
-                        onClick={this.showSettingsEditForm}
+                        onClick={this.showSettingsView}
                         className="text-dark rounded"
                       >
                         <i className="me-2 bi bi-sliders" />
@@ -263,6 +255,16 @@ class Main extends React.Component<any, State> {
                 <ErrorBoundary>
                   <Search />
                 </ErrorBoundary>
+              </Row>
+              <Row className="mb-4 row-cols-1 justify-content-center">
+                {showSettingsView ? (
+                  <ErrorBoundary>
+                    {' '}
+                    <SettingsView
+                      closeSettingsView={this.closeSettingsView}
+                    />{' '}
+                  </ErrorBoundary>
+                ) : null}
               </Row>
               <Row className="mb-4 row-cols-1 justify-content-center">
                 {showLibraries ? (
@@ -304,14 +306,6 @@ class Main extends React.Component<any, State> {
                 handleFormChange={this.handleChange as any}
                 libraryPath={libraryPath}
                 onBrowse={this.onBrowse}
-              />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <SettingsModalForm
-                showSettingsModal={showSettingsModal}
-                editSettings={this.editSettings}
-                closeSettingsModalForm={this.closeSettingsEditForm}
-                handleFormChange={this.handleChange as any}
               />
             </ErrorBoundary>
           </Row>
