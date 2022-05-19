@@ -11,13 +11,14 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
+import { nanoid } from 'nanoid';
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import Drive from 'node-disk-info/dist/classes/drive';
 import PouchDB from 'pouchdb';
 import Find from 'pouchdb-find';
-import { DirectoryTree } from 'directory-tree';
+import { DirectoryTree, DirectoryTreeCallback, } from 'directory-tree';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
@@ -153,6 +154,19 @@ dbFileBase
   .catch();
 
 dbFileBase
+  .createIndex({
+    index: {
+      fields: [
+        'libraryTree.children.[].name',
+        'libraryTree.children.[].path',
+        'libraryTree.children.[].type',
+        'libraryTree.children.[].extension',
+      ],
+    },
+  })
+  .catch();
+
+dbFileBase
   .info()
   .then(function (info: any) {
     logger.info(JSON.stringify(info));
@@ -166,13 +180,21 @@ dbFileExtensions
   })
   .catch((error: string | undefined) => logger.log('error', new Error(error)));
 
+const callback: DirectoryTreeCallback = (item: DirectoryTree) => {
+  item.custom = { id: nanoid() };
+};
+
 ipcMain.handle('get-dir-tree', async (event, arg) => {
-  let tree: DirectoryTree;
+  let tree: DirectoryTree & { id?: string };
   try {
-    tree = dirTree(arg, {
-      attributes: ['mtime', 'size', 'type', 'extension', 'birthtime'],
-      normalizePath: true,
-    });
+    tree = dirTree(
+      arg,
+      {
+        attributes: ['mtime', 'size', 'type', 'extension', 'birthtime'],
+        normalizePath: true,
+      },
+      callback
+    );
     return tree;
   } catch (error: any) {
     logger.error(`get-dir-tree-main ${Error(error)}`);

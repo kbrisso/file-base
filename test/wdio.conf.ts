@@ -1,4 +1,6 @@
-import type { Options } from '@wdio/types';
+// eslint-disable-next-line import/prefer-default-export
+// @ts-ignore
+import { Options } from '@wdio/types';
 
 export const config: Options.Testrunner = {
   //
@@ -29,10 +31,14 @@ export const config: Options.Testrunner = {
     },
     // tsconfig-paths is only used if "tsConfigPathsOpts" are provided, if you
     // do please make sure "tsconfig-paths" is installed as dependency
+    tsConfigPathsOpts: {
+      baseUrl: './',
+    },
     // tsConfigPathsOpts: {
     //     baseUrl: './'
     // }
   },
+  // ...
   //
   // ==================
   // Specify Test Files
@@ -84,6 +90,13 @@ export const config: Options.Testrunner = {
       maxInstances: 5,
       //
       browserName: 'chrome',
+      'goog:chromeOptions': {
+        binary:
+          'C:\\Projects\\file-base\\release\\build\\win-unpacked\\file-base.exe', // Path to your Electron binary.
+        args: [
+          /* cli arguments */
+        ], // Optional, perhaps 'app=' + /path/to/your/app/
+      },
       acceptInsecureCerts: true,
       // If outputDir is provided WebdriverIO can capture driver session logs
       // it is possible to configure which logTypes to include/exclude.
@@ -91,6 +104,7 @@ export const config: Options.Testrunner = {
       // excludeDriverLogs: ['bugreport', 'server'],
     },
   ],
+
   //
   // ===================
   // Test Configurations
@@ -138,7 +152,16 @@ export const config: Options.Testrunner = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ['chromedriver'],
+  outputDir: 'all-logs',
+  // ...
+  services: [
+    ['chromedriver', {
+      logFileName: 'wdio-chromedriver.log', // default
+      outputDir: 'driver-logs', // overwrites the config.outputDir
+      args: ['--silent'],
+      chromedriverCustomPath: 'C:\\ChromeDriver\\chromedriver_win32\\chromedriver.exe'
+    }]
+  ],
 
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber

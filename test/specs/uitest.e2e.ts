@@ -1,8 +1,9 @@
 import * as assert from 'assert';
 
-describe('my awesome website', () => {
-  it('should do some assertions', async () => {
-    await expect(browser).toHaveTitle('file-base');
+describe('UI Test starting', () => {
+  it('Should have title file-base', async () => {
+    expect(browser).toHaveTitle('file-base');
+    expect(browser).
 
     const button = await $(
       '/html/body/div/div/div[1]/div[1]/main/div/div[2]/div[1]/button'
@@ -14,3 +15,9 @@ describe('my awesome website', () => {
     await assert(await div.getText(), 'Create library');
   });
 });
+
+/**
+//*[@id="root"]/div/div[1]/div[1]/main/div/div[2]/div[1]/button
+//*[@id="root"]/div/div[1]/div[1]/main/div/div[2]/div[1]/button
+/html/body/div/div/div[1]/div[1]/main/div/div[2]/div[1]/button
+ * */

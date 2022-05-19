@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+// @ts-ignore
 import { render } from '@testing-library/react';
 import App from '../renderer/Drive';
 
