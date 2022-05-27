@@ -3,7 +3,6 @@ import * as assert from 'assert';
 describe('UI Test starting', () => {
   it('Should have title file-base', async () => {
     expect(browser).toHaveTitle('file-base');
-    expect(browser).
 
     const button = await $(
       '/html/body/div/div/div[1]/div[1]/main/div/div[2]/div[1]/button'
