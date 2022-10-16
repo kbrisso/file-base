@@ -390,7 +390,7 @@ function columns(): any[] {
 }
 
 export default function fileExtensionGrid() {
-   return (
+  return (
     <div>
       <div className="centered lg">
         <form className="bg-light border rounded border-secondary shadow-lg">

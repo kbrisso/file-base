@@ -2,7 +2,9 @@
 <h3 align="center">Filebase <i>beta</i></h3>
 <p>
     Filebase is a database for your files and directories. It's just not another file explorer. You can tag, add notes, organize, categorize, filter, search and quickly find your needed files with an easy-to-use application. Filebase does not modify your existing files or directories and is designed for people who have a lot of files to keep track of and want to keep them organized and located quickly! There are other file utilities on the market but none focus on organization.
-    <br />   
+    This project is strictly for fun and learning new technology. It gets updates when I have time. :) 
+    10/16/2022 The newest push has code to replicate the PouchDB database to CouchDB and UI testing with WDIO. I will update these instructions soon.
+<br />   
 </p>
 
 # Table of Contents
