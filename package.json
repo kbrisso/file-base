@@ -255,7 +255,7 @@
         "pouchdb-find": "^7.3.0",
         "react": "^18.2.0",
         "react-bootstrap": "^2.5.0",
-        "react-bootstrap-icons": "^1.8.1",
+        "react-bootstrap-icons": "^1.9.1",
         "react-data-table-component": "^7.4.7",
         "react-dom": "^18.2.0",
         "react-router-dom": "^6.4.1",
