@@ -89,13 +89,13 @@ const dbFileExtensions = new PouchDB('./db/file-base-fe', {
 });
 const dbTags = new PouchDB('./db/file-base-tags', { adapter: 'leveldb' });
 
-/** Use this to push data to CouchDB
+// Use this to push data to CouchDB
 const remoteFilebaseDB = new PouchDB(
-  'http://xxx:xxx@localhost:5984/file-base'
+  'http://kbrisso:!kmbcpm22@localhost:5984/file-base'
 );
 
 const remoteFileExtensionsDB = new PouchDB(
-  'http://xxx:xxxx@localhost:5984/file-base-fe'
+  'http://kbrisso:!kmbcpm22@localhost:5984/file-base-fe'
 );
 
 dbFileBase.replicate
@@ -138,7 +138,7 @@ dbFileExtensions
     logger.log('error', err);
   });
 
-
+/**
  DB.destroy()
  .then(function () {
     // database destroyed
@@ -146,7 +146,7 @@ dbFileExtensions
  .catch(function (error) {
     logger.log('error', new Error(error));
   });
-*/
+**/
 
 dbFileBase
   .createIndex({
