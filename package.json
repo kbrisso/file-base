@@ -236,7 +236,7 @@
         "ansi-regex": "^6.0.1",
         "async": "^3.2.3",
         "bootstrap": "^5.3.1",
-        "bootstrap-icons": "^1.9.1",
+        "bootstrap-icons": "^1.10.5",
         "dayjs": "^1.11.5",
         "directory-tree": "^3.3.1",
         "electron-debug": "^3.2.0",
