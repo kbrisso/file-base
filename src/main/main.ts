@@ -25,7 +25,7 @@ import { resolveHtmlPath } from './util';
 const axios = require('axios');
 const {MongoClient} = require('mongodb');
 const url =
-  'mongodb+srv://dbUser:cosnJZEZx11jZ5It@cluster0.uktkj.mongodb.net/?retryWrites=true&w=majority';
+  'mongodb+srv://dbUser:xxx@cluster0.uktkj.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(url);
 
 /* function getFiles(): void {
