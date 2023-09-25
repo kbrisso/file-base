@@ -18,9 +18,15 @@ import log from 'electron-log';
 import Drive from 'node-disk-info/dist/classes/drive';
 import PouchDB from 'pouchdb';
 import Find from 'pouchdb-find';
-import { DirectoryTree, DirectoryTreeCallback, } from 'directory-tree';
+import { DirectoryTree, DirectoryTreeCallback } from 'directory-tree';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+
+const axios = require('axios');
+const {MongoClient} = require('mongodb');
+const url =
+  'mongodb+srv://dbUser:cosnJZEZx11jZ5It@cluster0.uktkj.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(url);
 
 /* function getFiles(): void {
   const api = new fdir()
@@ -87,6 +93,7 @@ const dbFileBase = new PouchDB('./db/file-base', { adapter: 'leveldb' });
 const dbFileExtensions = new PouchDB('./db/file-base-fe', {
   adapter: 'leveldb',
 });
+
 const dbTags = new PouchDB('./db/file-base-tags', { adapter: 'leveldb' });
 
 /**
@@ -148,7 +155,7 @@ dbFileExtensions
     logger.log('error', new Error(error));
   });
 
-**/
+* */
 
 dbFileBase
   .createIndex({
@@ -366,9 +373,9 @@ const createWindow = async () => {
   menuBuilder.buildMenu();
 
   // Open urls in the user's browser
-  mainWindow.webContents.on('new-window', (event, url) => {
-    event.preventDefault();
-    shell.openExternal(url);
+  mainWindow.webContents.setWindowOpenHandler((edata) => {
+    shell.openExternal(edata.url);
+    return { action: 'deny' };
   });
 
   // Remove this if your app does not use auto updates
