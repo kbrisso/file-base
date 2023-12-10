@@ -10,38 +10,25 @@
  */
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import { promises as fs } from 'fs';
 import path from 'path';
 import { nanoid } from 'nanoid';
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import Drive from 'node-disk-info/dist/classes/drive';
 import PouchDB from 'pouchdb';
 import Find from 'pouchdb-find';
 import { DirectoryTree, DirectoryTreeCallback } from 'directory-tree';
+import { MongoClient } from 'mongodb';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
-const axios = require('axios');
-const {MongoClient} = require('mongodb');
 const url =
   'mongodb+srv://dbUser:xxx@cluster0.uktkj.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(url);
-
-/* function getFiles(): void {
-  const api = new fdir()
-    .withFullPaths()
-    .crawl('C:\\Users\\kbrisso\\Downloads\\Photos');
-  const files = api.sync();
-  console.log(files);
-}
-*/
-
 const { createLogger, format, transports } = require('winston');
-
-const nodeDiskInfo = require('node-disk-info');
-const { fdir } = require('fdir');
 const dirTree = require('directory-tree');
+const nodeDiskInfo = require('node-disk-info');
 
 export default class AppUpdater {
   constructor() {
@@ -77,13 +64,6 @@ if (process.env.NODE_ENV !== 'production') {
       format: format.combine(format.colorize(), format.simple()),
     })
   );
-}
-
-function getDriveList(): Promise<Drive> {
-  // eslint-disable-next-line new-cap
-  return new nodeDiskInfo.getDiskInfo()
-    .then()
-    .catch((reason: any) => logger.log('error', new Error(reason)));
 }
 
 /** Setup database* */
@@ -197,8 +177,7 @@ const callback: DirectoryTreeCallback = (item: DirectoryTree) => {
 ipcMain.handle('get-dir-tree', async (event, arg) => {
   let tree: DirectoryTree & { id?: string };
   try {
-    tree = dirTree(
-      arg,
+    tree = dirTree(arg,
       {
         attributes: ['mtime', 'size', 'type', 'extension', 'birthtime'],
         normalizePath: true,
@@ -282,15 +261,18 @@ ipcMain.handle('get-file-extensions', async (event, arg) => {
     response = await dbFileExtensions.allDocs({ include_docs: true });
     return response;
   } catch (error: any) {
-    logger.error(`et-file-extensions ${new Error(error)}`);
+    logger.error(`get-file-extensions ${new Error(error)}`);
   }
   return response;
 });
 
 ipcMain.handle('get-drives', async (event, arg) => {
-  return getDriveList().then((result) => {
-    return result;
-  });
+  try {
+    return await nodeDiskInfo.getDiskInfo();
+  }catch (error: any) {
+    logger.log('error', new Error(error));
+  }
+  return null;
 });
 
 ipcMain.handle('create-library', async (event, arg) => {
@@ -303,6 +285,15 @@ ipcMain.handle('create-library', async (event, arg) => {
   }
   return response;
 });
+
+async function example() {
+  try {
+    const data = await fs.readFile('/Users/joe/test.txt', { encoding: 'utf8' });
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');

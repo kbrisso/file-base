@@ -247,7 +247,7 @@
         "loglevel": "^1.8.0",
         "mime-db": "^1.52.0",
         "mongodb": "^6.1.0",
-        "nanoid": "^3.3.1",
+        "nanoid": "^3.3.6",
         "node-abi": "^3.47.0",
         "node-disk-info": "^1.3.0",
         "node-fetch": "^3.3.2",

@@ -36,7 +36,7 @@ class DriveList extends React.Component<{}, State> {
         {drives?.map((d: any) => (
           <Fragment key={d._filesystem}>
             <li
-              className="list-group-item bg-light border rounded border-secondary shadow-lg"
+              className="p-2 list-group-item bg-light border rounded border-secondary shadow-lg"
               itemID={d._filesystem}
             >
               <span className="fs-2">
