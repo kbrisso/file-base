@@ -15,7 +15,7 @@
     "postinstall": "npm run electron-rebuild && npm run link-modules"
   },
   "dependencies": {
-    "@types/pouchdb": "^6.4.0",
+    "@types/pouchdb": "^6.4.2",
     "bootstrap-icons": "^1.10.5",
     "pouchdb": "^7.3.1"
   },
